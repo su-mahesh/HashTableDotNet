@@ -53,6 +53,7 @@ namespace DataStructure
         else myMapNode.value = value;
     }
 
+
     public override string ToString()
     {
         StringBuilder myMapNodeString = new StringBuilder("");
@@ -65,5 +66,19 @@ namespace DataStructure
         }
             return myMapNodeString.ToString();
     }
-}
+    public void Remove(K key)
+    {
+        int index = GetBucketIndex(key);
+        LinkedList<K, V> myLinkedList = BucketList[index];
+
+        if (myLinkedList != null)
+        {
+            MyMapNode<K, V> myMapNode = myLinkedList.Search(key);
+            if (myMapNode != null)
+            {
+            myLinkedList.DeleteNode(myMapNode);
+            }
+        }
+    }
+    }
 }
